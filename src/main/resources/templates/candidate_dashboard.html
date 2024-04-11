@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <span th:text="${candidate.name}"></span>!</h1>
+    <p>Your details:</p>
+    <ul>
+        <li><strong>Name:</strong> <span th:text="${candidate.name}"></span></li>
+        <li><strong>Email:</strong> <span th:text="${candidate.email}"></span></li>
+        <li><strong>Trainer Email:</strong> <span th:text="${candidate.trainerEmail}"></span></li>
+        <li><strong>Score:</strong> <span th:text="${candidate.score}"></span></li>
+    </ul>
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>

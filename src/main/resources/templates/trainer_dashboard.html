@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Candidates</title>
+<style>
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+td {
+	border-bottom: 1px solid #ddd;
+	padding: 8px;
+}
+</style>
+</head>
+<body>
+	<h1>Candidates</h1>
+
+	<input type="text" id="searchInput" onkeyup="searchCandidates()"
+		placeholder="Search for candidates...">
+
+	<table id="candidatesTable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Score</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="candidate : ${candidates}">
+				<td th:text="${candidate.name}"></td>
+				<td th:text="${candidate.email}"></td>
+				<td th:text="${candidate.score}"></td>
+				<td>
+					
+					<button class="edit-button"
+						th:attr="data-candidate-id=${candidate.id}">Edit</button>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+	
+    <form action="/t_logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+
+	<script>
+		// Function to filter candidates based on search input
+		function searchCandidates() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("searchInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("candidatesTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+
+		
+		var editButtons = document.querySelectorAll('.edit-button');
+
+		// Loop through each button and attach a click event listener
+		editButtons.forEach(function(button) {
+			button.addEventListener('click', function() {
+				
+				var candidateId = this.getAttribute('data-candidate-id');
+
+				
+				window.location.href = '/editCandidate?id=' + candidateId;
+			});
+		});
+	</script>
+</body>
+</html>

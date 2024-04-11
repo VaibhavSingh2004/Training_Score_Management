@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        .container {
+            text-align: center;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .option {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our College Website!</h1>
+        <p>We offer a wide range of courses and opportunities for your future career.</p>
+        
+        <div class="options">
+            <div class="option">
+                <h3>Trainer</h3>
+                <a th:href="@{/trainer/register}">Register as Trainer</a><br>
+                <a th:href="@{/trainer/login}">Login as Trainer</a>
+            </div>
+            <div class="option">
+                <h3>Candidate</h3>
+                <a th:href="@{/candidate/register}">Register as Candidate</a><br>
+                <a th:href="@{/candidate/login}">Login as Candidate</a>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <footer>
+            <p>Contact us: info@example.com</p>
+        </footer>
+        
+        <img src="college_image.jpg" alt="College Image" width="500">
+    </div>
+</body>
+</html>
