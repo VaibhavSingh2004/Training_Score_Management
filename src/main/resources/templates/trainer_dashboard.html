@@ -1,100 +1,144 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Candidates</title>
-<style>
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-th {
-	background-color: #f2f2f2;
-	font-weight: bold;
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-td {
-	border-bottom: 1px solid #ddd;
-	padding: 8px;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Candidates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Lighter background */
+            color: #333; /* Dark text color */
+            margin: 20px; /* Margin from the screen */
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #cc3333; /* Reddish heading */
+        }
+        input[type="text"] {
+            width: calc(100% - 40px); /* Full width with padding */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc; /* Light border color */
+            border-radius: 20px; /* Rounder corners */
+            box-sizing: border-box;
+            outline: none; /* Remove default input focus */
+        }
+        input[type="text"]:focus {
+            border-color: #cc3333; /* Highlight border on focus */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            background-color: #fff; /* White background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        th {
+            background-color: #f2f2f2; /* Lighter heading background */
+            font-weight: bold;
+            text-align: left;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Even row background color */
+        }
+        td {
+            border-bottom: 1px solid #ddd; /* Light border color */
+            padding: 10px;
+        }
+        .edit-button {
+            padding: 8px 16px;
+            background-color: #cc3333; /* Reddish button */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .edit-button:hover {
+            background-color: #990000; /* Darker red on hover */
+        }
+        .logout-button {
+            padding: 10px 20px; /* Padding for the button */
+            background-color: #990000; /* Darker red button */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #cc3333; /* Reddish button on hover */
+        }
+    </style>
 </head>
 <body>
-	<h1>Candidates</h1>
+    <h1>Candidates</h1>
 
-	<input type="text" id="searchInput" onkeyup="searchCandidates()"
-		placeholder="Search for candidates...">
+    <input type="text" id="searchInput" onkeyup="searchCandidates()"
+           placeholder="Search for candidates...">
 
-	<table id="candidatesTable">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Score</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="candidate : ${candidates}">
-				<td th:text="${candidate.name}"></td>
-				<td th:text="${candidate.email}"></td>
-				<td th:text="${candidate.score}"></td>
-				<td>
-					
-					<button class="edit-button"
-						th:attr="data-candidate-id=${candidate.id}">Edit</button>
-				</td>
-			</tr>
+    <table id="candidatesTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="candidate : ${candidates}">
+            <td th:text="${candidate.name}"></td>
+            <td th:text="${candidate.email}"></td>
+            <td th:text="${candidate.score}"></td>
+            <td>
+                <button class="edit-button"
+                        th:attr="data-candidate-id=${candidate.id}">Edit</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-		</tbody>
-	</table>
-	
     <form action="/t_logout" method="post">
-        <input type="submit" value="Logout">
+        <input type="submit" class="logout-button" value="Logout">
     </form>
 
-	<script>
-		// Function to filter candidates based on search input
-		function searchCandidates() {
-			var input, filter, table, tr, td, i, txtValue;
-			input = document.getElementById("searchInput");
-			filter = input.value.toUpperCase();
-			table = document.getElementById("candidatesTable");
-			tr = table.getElementsByTagName("tr");
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					txtValue = td.textContent || td.innerText;
-					if (txtValue.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}
-			}
-		}
+    <script>
+        // Function to filter candidates based on search input
+        function searchCandidates() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("candidatesTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
-		
-		var editButtons = document.querySelectorAll('.edit-button');
 
-		// Loop through each button and attach a click event listener
-		editButtons.forEach(function(button) {
-			button.addEventListener('click', function() {
-				
-				var candidateId = this.getAttribute('data-candidate-id');
+        var editButtons = document.querySelectorAll('.edit-button');
 
-				
-				window.location.href = '/editCandidate?id=' + candidateId;
-			});
-		});
-	</script>
+        // Loop through each button and attach a click event listener
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var candidateId = this.getAttribute('data-candidate-id');
+                window.location.href = '/editCandidate?id=' + candidateId;
+            });
+        });
+    </script>
 </body>
 </html>

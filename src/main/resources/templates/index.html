@@ -1,47 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <style>
-        .container {
-            text-align: center;
-        }
-        .options {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .option {
-            margin: 0 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Home</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	text-align: center;
+	margin: 25px auto;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 800px;
+}
+
+h1 {
+	color: #333;
+}
+
+p {
+	color: #666;
+}
+
+.options {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.option {
+	margin: 0 20px;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+	transform: translateY(-3px);
+	transition: all 0.3s ease;
+}
+
+.option h3 {
+	color: #555;
+}
+
+.option a {
+	display: block;
+	margin-top: 10px;
+	text-decoration: none;
+	color: #007bff;
+	transition: color 0.3s ease;
+}
+
+.option a:hover {
+	color: #0056b3;
+}
+
+footer {
+	margin-top: 30px;
+}
+
+footer p {
+	color: #888;
+}
+
+img {
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ensures the image doesn't exceed its container's width */
+    height: 200px; /* Fixed height */
+    width: auto; /* Allows the width to adjust proportionally */
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our College Website!</h1>
-        <p>We offer a wide range of courses and opportunities for your future career.</p>
-        
-        <div class="options">
-            <div class="option">
-                <h3>Trainer</h3>
-                <a th:href="@{/trainer/register}">Register as Trainer</a><br>
-                <a th:href="@{/trainer/login}">Login as Trainer</a>
-            </div>
-            <div class="option">
-                <h3>Candidate</h3>
-                <a th:href="@{/candidate/register}">Register as Candidate</a><br>
-                <a th:href="@{/candidate/login}">Login as Candidate</a>
-            </div>
-        </div>
-        
-        <hr>
-        
-        <footer>
-            <p>Contact us: info@example.com</p>
-        </footer>
-        
-        <img src="college_image.jpg" alt="College Image" width="500">
-    </div>
+	<div class="container">
+		<h1>Welcome to Our Website!</h1>
+		<p>Let's Manage your Score</p>
+
+		<div class="options">
+			<div class="option">
+				<h3>Trainer</h3>
+				<a th:href="@{/trainer/register}">Register as Trainer</a><br> <a
+					th:href="@{/trainer/login}">Login as Trainer</a>
+			</div>
+			<div class="option">
+				<h3>Candidate</h3>
+				<a th:href="@{/candidate/register}">Register as Candidate</a><br>
+				<a th:href="@{/candidate/login}">Login as Candidate</a>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>Contact us: info@example.com</p>
+		</footer>
+
+		<img
+			src="https://pbs.twimg.com/profile_images/1765329274570002433/he8oo5zB_400x400.jpg"
+			alt="College Image" width="500">
+	</div>
 </body>
 </html>

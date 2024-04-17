@@ -3,18 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Candidate Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Lighter background */
+            color: #cc3333; /* Reddish text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: #fff; /* White background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+            color: #cc3333; /* Reddish heading */
+        }
+        p {
+            color: #666; /* Lighter paragraph color */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 300px;
+            text-align: left;
+        }
+        li {
+            margin-bottom: 10px;
+            color: #cc3333; /* Reddish list item color */
+        }
+        strong {
+            color: #333; /* Darker strong text color */
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #cc3333; /* Reddish button */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #990000; /* Darker red on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, <span th:text="${candidate.name}"></span>!</h1>
-    <p>Your details:</p>
-    <ul>
-        <li><strong>Name:</strong> <span th:text="${candidate.name}"></span></li>
-        <li><strong>Email:</strong> <span th:text="${candidate.email}"></span></li>
-        <li><strong>Trainer Email:</strong> <span th:text="${candidate.trainerEmail}"></span></li>
-        <li><strong>Score:</strong> <span th:text="${candidate.score}"></span></li>
-    </ul>
-    <form action="/logout" method="post">
-        <input type="submit" value="Logout">
-    </form>
+    <div class="card">
+        <h1>Welcome, <span th:text="${candidate.name}"></span>!</h1>
+        <p>Your details:</p>
+        <ul>
+            <li><strong>Name:</strong> <span th:text="${candidate.name}"></span></li>
+            <li><strong>Email:</strong> <span th:text="${candidate.email}"></span></li>
+            <li><strong>Trainer Email:</strong> <span th:text="${candidate.trainerEmail}"></span></li>
+            <li><strong>Score:</strong> <span th:text="${candidate.score}"></span></li>
+        </ul>
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
 </body>
 </html>
